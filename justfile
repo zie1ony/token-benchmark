@@ -22,7 +22,7 @@ CASPERLABS_CONTRACT_HASH := "hash-b88ce109f18be5bccd20cf291479714fe724a0a5b32f7b
 CASPERLABS_ACCOUNT_HASH2 := "account-hash-9bf25af13630d96cd751d106cd041ef3d2230750ce8921de1595dd3a78ca6234"
 
 ODRA_TOKEN_WASM_PATH := "wasm/odra_erc20.wasm"
-ODRA_CONTRACT_HASH := "hash-f7d3410596226c0aed54a45c3a930daa995746ccfda29d8d2b0e6dc19fcc3f32"
+ODRA_CONTRACT_HASH := "hash-3576c7a30a8af0c11b966e2845da81ee5c999e5e4dd1ab6fc6e449a6797836a2"
 ODRA_ACCOUNT_HASH2 := "account-hash-50e28cfd4fb987ecd113c8c57a4fec251a57e81d520f581c86d2d4f3c154fca6"
 
 default:
@@ -179,7 +179,7 @@ call_casperlabs_token_approve:
 deploy_odra_token_contract:
     casper-client put-deploy \
         --chain-name integration-test \
-        --secret-key {{SECRET_KEY_4}} \
+        --secret-key {{SECRET_KEY_1}} \
         --node-address {{NODE_ADDRESS}} \
         --payment-amount 150000000000 \
         --session-path {{ODRA_TOKEN_WASM_PATH}} \
@@ -192,12 +192,12 @@ deploy_odra_token_contract:
 call_odra_token_transfer:
     casper-client put-deploy \
         --chain-name integration-test \
-        --secret-key {{SECRET_KEY_4}} \
+        --secret-key {{SECRET_KEY_1}} \
         --node-address {{NODE_ADDRESS}} \
-        --payment-amount 100000000 \
+        --payment-amount 1000000000 \
         --session-hash {{ODRA_CONTRACT_HASH}} \
         --session-entry-point "transfer" \
-        --session-arg "recipient:key='account-hash-d5a3144dd6862408f76b6df43eaf06168e2851a6e049f78a3b70ee1d258ce070'" \
+        --session-arg "recipient:key='hash-50e28cfd4fb987ecd113c8c57a4fec251a57e81d520f581c86d2d4f3c154fca6'" \
         --session-arg "amount:u256='10'"
 
 call_odra_token_transferfrom:
@@ -215,7 +215,7 @@ call_odra_token_transferfrom:
 call_odra_token_approve:
     casper-client put-deploy \
         --chain-name integration-test \
-        --secret-key {{SECRET_KEY_4}} \
+        --secret-key {{SECRET_KEY_1}} \
         --node-address {{NODE_ADDRESS}} \
         --payment-amount 1000000000 \
         --session-hash {{ODRA_CONTRACT_HASH}} \
